@@ -34,7 +34,9 @@ class HomeProvider extends ChangeNotifier {
     data.fold((error) {
       log(error);
       if (error == 'No More Data') {
+        isMoreDataLoading = false;
         ToastMessage.showMessage(error, Colors.red);
+        notifyListeners();
       } else {
         isMoreDataLoading = false;
         notifyListeners();
@@ -43,7 +45,7 @@ class HomeProvider extends ChangeNotifier {
       if (data.length != 7) {
         isMoreDataLoading = false;
         log(isMoreDataLoading.toString());
-      }
+      } 
       log(isMoreDataLoading.toString());
       usersList = [...usersList, ...data];
       notifyListeners();
