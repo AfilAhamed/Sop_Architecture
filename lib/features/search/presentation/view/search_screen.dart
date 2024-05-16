@@ -22,12 +22,22 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
         child: Scaffold(
           backgroundColor: const Color.fromARGB(255, 229, 229, 229),
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.black,
             title: const Text(
               "Search User",
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
+            leading: Consumer<SearchUserProvider>(
+                builder: (context, searchProvider, child) {
+              return IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    searchProvider.searchController.clear();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_rounded));
+            }),
             iconTheme:
                 const IconThemeData(color: Color.fromARGB(255, 255, 255, 255)),
           ),

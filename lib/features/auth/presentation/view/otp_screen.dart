@@ -6,6 +6,8 @@ import 'package:task/features/auth/presentation/provider/auth_provider.dart';
 import 'package:task/features/home/presentations/view/home_screen.dart';
 import 'package:task/general/utils/app_images.dart';
 
+import '../../../../general/services/toast_messages.dart';
+
 class OtpScreen extends StatelessWidget {
   final String phoneNumber;
   final String verificationId;
@@ -132,8 +134,16 @@ class OtpScreen extends StatelessWidget {
                                   .then((value) => Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const HomeScreen(),
+                                        builder: (context) =>
+                                            const HomeScreen(),
                                       )));
+                            } else if (otpProvider.otpController.text.length !=
+                                6) {
+                              ToastMessage.showMessage(
+                                  'Please enter a valid otp', Colors.red);
+                            } else {
+                              ToastMessage.showMessage(
+                                  'Please enter the otp', Colors.red);
                             }
                           },
                           child: Text(

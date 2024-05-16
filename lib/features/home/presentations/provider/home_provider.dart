@@ -45,7 +45,7 @@ class HomeProvider extends ChangeNotifier {
       if (data.length != 7) {
         isMoreDataLoading = false;
         log(isMoreDataLoading.toString());
-      } 
+      }
       log(isMoreDataLoading.toString());
       usersList = [...usersList, ...data];
       notifyListeners();

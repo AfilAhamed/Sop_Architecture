@@ -222,8 +222,7 @@ class UploadUserDailog extends StatelessWidget {
                               } else {
                                 ToastMessage.showMessage(
                                     'Please add all fields', Colors.red);
-                                // showSnackBar(context, 'Please add all fields',
-                                //     Colors.red);
+                                
                               }
                             },
                             child: Text(

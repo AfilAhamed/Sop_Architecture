@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:task/features/auth/presentation/provider/auth_provider.dart';
+import 'package:task/general/services/toast_messages.dart';
 import 'package:task/general/utils/app_images.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -127,6 +128,9 @@ class LoginScreen extends StatelessWidget {
                               if (loginProvider
                                   .numberController.text.isNotEmpty) {
                                 loginProvider.loginWithPhoneNumber(context);
+                              } else {
+                                ToastMessage.showMessage(
+                                    'Please enter the number', Colors.red);
                               }
                             },
                             child: Text(
