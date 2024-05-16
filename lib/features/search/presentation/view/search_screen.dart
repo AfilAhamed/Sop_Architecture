@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:task/features/search/presentation/provider/search_provider.dart';
-
 import 'widget/textfield_widget.dart';
 
-class SearchUserScreen extends StatefulWidget {
+class SearchUserScreen extends StatelessWidget {
   const SearchUserScreen({super.key});
 
-  @override
-  State<SearchUserScreen> createState() => _SearchUserScreenState();
-}
-
-class _SearchUserScreenState extends State<SearchUserScreen> {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
@@ -34,6 +28,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
               return IconButton(
                   onPressed: () {
                     Navigator.pop(context);
+                    searchProvider.userSearchList.clear();
                     searchProvider.searchController.clear();
                   },
                   icon: const Icon(Icons.arrow_back_ios_rounded));

@@ -27,9 +27,11 @@ class HomeProvider extends ChangeNotifier {
   UserRepository userRepository = UserRepository();
   final ScrollController scrollController = ScrollController();
   bool isMoreDataLoading = true;
+  bool isLoading = false;
 
   //Get Users Data
   Future<void> getUsers(AgeType ageType) async {
+    isLoading = true;
     final data = await userRepository.getUsers(ageType);
     data.fold((error) {
       log(error);
@@ -50,6 +52,8 @@ class HomeProvider extends ChangeNotifier {
       usersList = [...usersList, ...data];
       notifyListeners();
     });
+    isLoading = false;
+    notifyListeners();
   }
 
   //add user user localy

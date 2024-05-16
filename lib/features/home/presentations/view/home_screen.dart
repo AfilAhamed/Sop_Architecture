@@ -146,37 +146,45 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 7),
                 child: Consumer<HomeProvider>(
                   builder: (context, homeProvider, child) {
-                    return homeProvider.usersList.isEmpty
+                    return homeProvider.isLoading
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : ListView.builder(
-                            controller: homeProvider.scrollController,
-                            itemCount: homeProvider.usersList.length,
-                            itemBuilder: (context, index) {
-                              final data = homeProvider.usersList[index];
-                              return Column(
-                                children: [
-                                  UserCard(
-                                    user: data,
-                                  ),
-                                  if (index ==
-                                          homeProvider.usersList.length - 1 &&
-                                      homeProvider.isMoreDataLoading)
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 10),
-                                      child: Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 3,
-                                          color: Colors.blue,
-                                        ),
+                        : homeProvider.usersList.isEmpty
+                            ? const Center(
+                                child: Text(
+                                  'No Users Yet',
+                                  style: TextStyle(fontSize: 19),
+                                ),
+                              )
+                            : ListView.builder(
+                                controller: homeProvider.scrollController,
+                                itemCount: homeProvider.usersList.length,
+                                itemBuilder: (context, index) {
+                                  final data = homeProvider.usersList[index];
+                                  return Column(
+                                    children: [
+                                      UserCard(
+                                        user: data,
                                       ),
-                                    )
-                                ],
+                                      if (index ==
+                                              homeProvider.usersList.length -
+                                                  1 &&
+                                          homeProvider.isMoreDataLoading)
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 3,
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                        )
+                                    ],
+                                  );
+                                },
                               );
-                            },
-                          );
                   },
                 ),
               ),
