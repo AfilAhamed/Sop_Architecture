@@ -10,6 +10,7 @@ class SearchUserRepository {
   SearchUserRepository._();
   QueryDocumentSnapshot? lastDocs;
 
+  // get search result from firebase
   Future<Either<String, List<UserModel>>> getSearchResults(
       String search) async {
     try {

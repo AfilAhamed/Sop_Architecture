@@ -31,9 +31,9 @@ class SearchUserProvider extends ChangeNotifier {
     data.fold((error) {
       log(error);
       if (error == 'No User Found') {
-        // isMoreDataLoading = false; // check
-
+        isMoreDataLoading = false; // check
         ToastMessage.showMessage(error, Colors.red);
+        notifyListeners();
       } else {
         isMoreDataLoading = false;
         notifyListeners();
@@ -51,6 +51,7 @@ class SearchUserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // clear previous search history
   void clearData() {
     searchUserRepository.lastDocs = null;
     isMoreDataLoading = true;
